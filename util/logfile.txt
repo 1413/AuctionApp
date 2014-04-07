@@ -1,0 +1,262 @@
+2014-04-06T23:47:27.520Z: new client connected at 127.0.0.1:49637
+2014-04-06T23:47:27.521Z: updating bids for client 127.0.0.1:49637
+2014-04-06T23:47:27.521Z: sending ui updates to client 127.0.0.1:49637
+2014-04-06T23:49:16.653Z: new client connected at 127.0.0.1:49638
+2014-04-06T23:49:16.654Z: updating bids for client 127.0.0.1:49638
+2014-04-06T23:49:16.654Z: sending ui updates to client 127.0.0.1:49638
+2014-04-06T23:49:31.807Z: new client connected at 127.0.0.1:49639
+2014-04-06T23:49:31.809Z: updating bids for client 127.0.0.1:49639
+2014-04-06T23:49:31.809Z: sending ui updates to client 127.0.0.1:49639
+2014-04-06T23:51:32.353Z: Error: Cannot find module './util/clone'
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:364:17)
+    at require (module.js:380:17)
+    at Object.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/spec/client-spec.js:10:13)
+    at Module._compile (module.js:456:26)
+    at Object.Module._extensions..js (module.js:474:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+    at Module.require (module.js:364:17)
+2014-04-06T23:51:41.011Z: new client connected at 127.0.0.1:49640
+2014-04-06T23:51:41.012Z: updating bids for client 127.0.0.1:49640
+2014-04-06T23:51:41.012Z: sending ui updates to client 127.0.0.1:49640
+2014-04-06T23:53:26.251Z: new client connected at 127.0.0.1:49642
+2014-04-06T23:53:26.252Z: updating bids for client 127.0.0.1:49642
+2014-04-06T23:53:26.252Z: sending ui updates to client 127.0.0.1:49642
+2014-04-06T23:57:26.725Z: new client connected at 127.0.0.1:49695
+2014-04-06T23:57:26.726Z: updating bids for client 127.0.0.1:49695
+2014-04-06T23:57:26.726Z: sending ui updates to client 127.0.0.1:49695
+2014-04-06T23:57:26.736Z: Error: listen EADDRINUSE
+    at errnoException (net.js:904:11)
+    at Server._listen2 (net.js:1042:14)
+    at listen (net.js:1064:10)
+    at Server.listen (net.js:1138:5)
+    at new Server (/Users/andrewchalmers/Desktop/AuctionApp/server.js:34:8)
+    at null.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/spec/client-spec.js:24:18)
+    at jasmine.Block.execute (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:1145:17)
+    at jasmine.Queue.next_ (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2177:31)
+    at jasmine.Queue.start (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2130:8)
+    at jasmine.Spec.execute (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2458:14)
+2014-04-06T23:57:26.737Z: new client connected at 127.0.0.1:49696
+2014-04-06T23:57:26.737Z: updating bids for client 127.0.0.1:49696
+2014-04-06T23:57:26.737Z: sending ui updates to client 127.0.0.1:49696
+2014-04-06T23:58:02.920Z: Error: listen EADDRINUSE
+    at errnoException (net.js:904:11)
+    at Server._listen2 (net.js:1042:14)
+    at listen (net.js:1064:10)
+    at Server.listen (net.js:1138:5)
+    at new Server (/Users/andrewchalmers/Desktop/AuctionApp/server.js:34:8)
+    at null.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/spec/client-spec.js:25:18)
+    at jasmine.Block.execute (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:1145:17)
+    at jasmine.Queue.next_ (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2177:31)
+    at jasmine.Queue.start (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2130:8)
+    at jasmine.Spec.execute (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2458:14)
+2014-04-06T23:58:02.922Z: new client connected at 127.0.0.1:49697
+2014-04-06T23:58:02.922Z: updating bids for client 127.0.0.1:49697
+2014-04-06T23:58:02.922Z: sending ui updates to client 127.0.0.1:49697
+2014-04-06T23:58:02.923Z: new client connected at 127.0.0.1:49698
+2014-04-06T23:58:02.923Z: updating bids for client 127.0.0.1:49698
+2014-04-06T23:58:02.923Z: sending ui updates to client 127.0.0.1:49698
+2014-04-07T00:04:48.607Z: new client connected at 127.0.0.1:49787
+2014-04-07T00:04:48.608Z: updating bids for client 127.0.0.1:49787
+2014-04-07T00:04:48.608Z: sending ui updates to client 127.0.0.1:49787
+2014-04-07T00:04:48.618Z: Error: listen EADDRINUSE
+    at errnoException (net.js:904:11)
+    at Server._listen2 (net.js:1042:14)
+    at listen (net.js:1064:10)
+    at Server.listen (net.js:1138:5)
+    at new Server (/Users/andrewchalmers/Desktop/AuctionApp/server.js:34:8)
+    at null.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/spec/client-spec.js:25:18)
+    at jasmine.Block.execute (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:1145:17)
+    at jasmine.Queue.next_ (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2177:31)
+    at jasmine.Queue.start (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2130:8)
+    at jasmine.Spec.execute (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2458:14)
+2014-04-07T00:04:48.619Z: new client connected at 127.0.0.1:49788
+2014-04-07T00:04:48.619Z: updating bids for client 127.0.0.1:49788
+2014-04-07T00:04:48.619Z: sending ui updates to client 127.0.0.1:49788
+2014-04-07T00:06:16.593Z: new client connected at 127.0.0.1:49792
+2014-04-07T00:06:16.594Z: updating bids for client 127.0.0.1:49792
+2014-04-07T00:06:16.594Z: sending ui updates to client 127.0.0.1:49792
+2014-04-07T00:10:09.146Z: new client connected at 127.0.0.1:49798
+2014-04-07T00:10:09.147Z: updating bids for client 127.0.0.1:49798
+2014-04-07T00:10:09.147Z: sending ui updates to client 127.0.0.1:49798
+2014-04-07T00:10:13.968Z: new client connected at 127.0.0.1:49799
+2014-04-07T00:10:13.970Z: updating bids for client 127.0.0.1:49799
+2014-04-07T00:10:13.970Z: sending ui updates to client 127.0.0.1:49799
+2014-04-07T00:44:39.195Z: new client connected at 127.0.0.1:49922
+2014-04-07T00:44:39.196Z: updating bids for client 127.0.0.1:49922
+2014-04-07T00:44:39.196Z: sending ui updates to client 127.0.0.1:49922
+2014-04-07T00:44:39.211Z: new client connected at 127.0.0.1:49923
+2014-04-07T00:44:39.211Z: updating bids for client 127.0.0.1:49923
+2014-04-07T00:44:39.211Z: sending ui updates to client 127.0.0.1:49923
+2014-04-07T00:44:39.211Z: new client connected at 127.0.0.1:49924
+2014-04-07T00:44:39.211Z: updating bids for client 127.0.0.1:49924
+2014-04-07T00:44:39.211Z: sending ui updates to client 127.0.0.1:49924
+2014-04-07T00:44:39.212Z: new client connected at 127.0.0.1:49925
+2014-04-07T00:44:39.212Z: updating bids for client 127.0.0.1:49925
+2014-04-07T00:44:39.212Z: sending ui updates to client 127.0.0.1:49925
+2014-04-07T00:45:11.105Z: new client connected at 127.0.0.1:49927
+2014-04-07T00:45:11.106Z: updating bids for client 127.0.0.1:49927
+2014-04-07T00:45:11.106Z: sending ui updates to client 127.0.0.1:49927
+2014-04-07T00:45:11.106Z: new client connected at 127.0.0.1:49928
+2014-04-07T00:45:11.107Z: updating bids for client 127.0.0.1:49928
+2014-04-07T00:45:11.107Z: sending ui updates to client 127.0.0.1:49928
+2014-04-07T00:45:11.107Z: new client connected at 127.0.0.1:49929
+2014-04-07T00:45:11.107Z: updating bids for client 127.0.0.1:49929
+2014-04-07T00:45:11.107Z: sending ui updates to client 127.0.0.1:49929
+2014-04-07T00:45:11.107Z: new client connected at 127.0.0.1:49930
+2014-04-07T00:45:11.107Z: updating bids for client 127.0.0.1:49930
+2014-04-07T00:45:11.107Z: sending ui updates to client 127.0.0.1:49930
+2014-04-07T00:46:58.464Z: new client connected at 127.0.0.1:49934
+2014-04-07T00:46:58.465Z: updating bids for client 127.0.0.1:49934
+2014-04-07T00:46:58.465Z: sending ui updates to client 127.0.0.1:49934
+2014-04-07T00:46:58.465Z: new client connected at 127.0.0.1:49935
+2014-04-07T00:46:58.466Z: updating bids for client 127.0.0.1:49935
+2014-04-07T00:46:58.466Z: sending ui updates to client 127.0.0.1:49935
+2014-04-07T00:46:58.466Z: new client connected at 127.0.0.1:49936
+2014-04-07T00:46:58.466Z: updating bids for client 127.0.0.1:49936
+2014-04-07T00:46:58.466Z: sending ui updates to client 127.0.0.1:49936
+2014-04-07T00:46:58.466Z: new client connected at 127.0.0.1:49937
+2014-04-07T00:46:58.466Z: updating bids for client 127.0.0.1:49937
+2014-04-07T00:46:58.466Z: sending ui updates to client 127.0.0.1:49937
+2014-04-07T00:46:58.469Z: client 127.0.0.1:49934 sent data {"itemName":"Fan","price":200}
+2014-04-07T00:46:58.471Z: TypeError: Object 200 has no method 'replace'
+    at removeEndline (/Users/andrewchalmers/Desktop/AuctionApp/client.js:163:16)
+    at clean (/Users/andrewchalmers/Desktop/AuctionApp/client.js:169:23)
+    at Client.perform (/Users/andrewchalmers/Desktop/AuctionApp/client.js:173:21)
+    at Client.save (/Users/andrewchalmers/Desktop/AuctionApp/client.js:115:14)
+    at Socket.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/client.js:185:19)
+    at Socket.EventEmitter.emit (events.js:95:17)
+    at Socket.<anonymous> (_stream_readable.js:746:14)
+    at Socket.EventEmitter.emit (events.js:92:17)
+    at emitReadable_ (_stream_readable.js:408:10)
+    at emitReadable (_stream_readable.js:404:5)
+2014-04-07T00:46:58.471Z: client 127.0.0.1:49935 sent data Drapes
+2014-04-07T00:47:16.526Z: new client connected at 127.0.0.1:49939
+2014-04-07T00:47:16.528Z: updating bids for client 127.0.0.1:49939
+2014-04-07T00:47:16.528Z: sending ui updates to client 127.0.0.1:49939
+2014-04-07T00:47:16.528Z: new client connected at 127.0.0.1:49940
+2014-04-07T00:47:16.528Z: updating bids for client 127.0.0.1:49940
+2014-04-07T00:47:16.528Z: sending ui updates to client 127.0.0.1:49940
+2014-04-07T00:47:16.529Z: new client connected at 127.0.0.1:49941
+2014-04-07T00:47:16.529Z: updating bids for client 127.0.0.1:49941
+2014-04-07T00:47:16.529Z: sending ui updates to client 127.0.0.1:49941
+2014-04-07T00:47:16.529Z: new client connected at 127.0.0.1:49942
+2014-04-07T00:47:16.529Z: updating bids for client 127.0.0.1:49942
+2014-04-07T00:47:16.529Z: sending ui updates to client 127.0.0.1:49942
+2014-04-07T00:47:16.533Z: client 127.0.0.1:49939 sent data {"itemName":"Fan","price":"200"}
+2014-04-07T00:47:16.536Z: TypeError: Cannot call method 'addToBids' of undefined
+    at Client.perform (/Users/andrewchalmers/Desktop/AuctionApp/client.js:175:16)
+    at Client.save (/Users/andrewchalmers/Desktop/AuctionApp/client.js:115:14)
+    at Socket.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/client.js:185:19)
+    at Socket.EventEmitter.emit (events.js:95:17)
+    at Socket.<anonymous> (_stream_readable.js:746:14)
+    at Socket.EventEmitter.emit (events.js:92:17)
+    at emitReadable_ (_stream_readable.js:408:10)
+    at emitReadable (_stream_readable.js:404:5)
+    at readableAddChunk (_stream_readable.js:165:9)
+    at Socket.Readable.push (_stream_readable.js:127:10)
+2014-04-07T00:47:16.536Z: client 127.0.0.1:49940 sent data Drapes
+2014-04-07T02:44:48.268Z: Error: listen EADDRINUSE
+    at errnoException (net.js:904:11)
+    at Server._listen2 (net.js:1042:14)
+    at listen (net.js:1064:10)
+    at Server.listen (net.js:1138:5)
+    at new Server (/Users/andrewchalmers/Desktop/AuctionApp/server.js:35:8)
+    at launch (/Users/andrewchalmers/Desktop/AuctionApp/spec/server-spec.js:18:18)
+    at null.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/spec/server-spec.js:33:9)
+    at jasmine.Block.execute (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:1145:17)
+    at jasmine.Queue.next_ (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2177:31)
+    at jasmine.Queue.start (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2130:8)
+2014-04-07T02:44:48.275Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:44:48.276Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:44:48.277Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:44:48.278Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:44:48.278Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:44:48.279Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:44:48.279Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:44:48.280Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:44:48.280Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:44:48.281Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:45:22.895Z: Error: listen EADDRINUSE
+    at errnoException (net.js:904:11)
+    at Server._listen2 (net.js:1042:14)
+    at listen (net.js:1064:10)
+    at Server.listen (net.js:1138:5)
+    at new Server (/Users/andrewchalmers/Desktop/AuctionApp/server.js:35:8)
+    at launch (/Users/andrewchalmers/Desktop/AuctionApp/spec/server-spec.js:18:18)
+    at null.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/spec/server-spec.js:33:9)
+    at jasmine.Block.execute (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:1145:17)
+    at jasmine.Queue.next_ (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2177:31)
+    at jasmine.Queue.start (/usr/local/lib/node_modules/jasmine-node/lib/jasmine-node/jasmine-1.3.1.js:2130:8)
+2014-04-07T02:45:22.900Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:45:22.901Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:45:22.902Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:45:22.902Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:45:22.903Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:45:22.903Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:45:22.904Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:45:22.904Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:45:22.904Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)
+2014-04-07T02:45:22.905Z: TypeError: Object #<Client> has no method 'on'
+    at Server.<anonymous> (/Users/andrewchalmers/Desktop/AuctionApp/server.js:26:11)
+    at Server.EventEmitter.emit (events.js:95:17)
+    at TCP.onconnection (net.js:1191:8)

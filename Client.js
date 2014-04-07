@@ -1,188 +1,206 @@
+var t1 = "You are currently the high bidder";
+var t2 = "You have lost";
+var t3 = "Congratulations! The item is yours.";
+var t4 = "Enter a higher value and click bid";
+var t5 = "You are out bid, enter a higher value and re-bid again";
+var BidText = [t1, t2, t3, t4, t5];
+var server;
+var log = require('./util/log.js');
 
-if(!Array.prototype.last) {
-    Array.prototype.last = function() {
-        return this[this.length - 1];
+
+function Client(sock, s) {
+    function setName() {
+        return (String)(sock.remoteAddress + ":" + sock.remotePort);
     }
+    server = s;
+    this.incoming = null;
+    this.socket = sock;
+    this.bids = {};
+    this.itemList = {};
+    this.input1 = null;
+    this.input2 = null;
+    this.bidLock = false;
+    this.name = setName();
+    this.setConnect();
+    this.images = [];
 }
 
-var net = require('net');
-var itemList = {}; 
-var readline = require('readline');
-var bids = {};
-var rl = readline.createInterface({
-	output: process.stdout, 
-	input: process.stdin
-});
+Client.prototype.respondToServer = function(data) {
+    var obj;
+    obj = JSON.parse(data);
+    this.loadBidArray(obj);
+    if (obj['BidText']) {
+        this.setBidText(obj);
+    } else {
+        this.refreshItems(obj);
+    }
+    this.bidLock = false;
+    this.socket.write("Input Request: ");
+};
 
-var bidLock;
-process.on('uncaughtException', function (err) {
-  console.log('Caught exception: ' + err);
-});
-
-
-
-BidText = ["You are currently the high bidder", 
-"You have lost", 
-"Congradulations! The item is yours.", 
-"Enter a higher value and click bid", 
-"You are out bid, enter a higher value and re-bid again"];
-
-
-var client = net.connect({port: 8124}, function() { 
-  console.log('client connected');
-});
-
-client.on('data', function(data) {
-	console.log("here");
-	var obj;
-	if(obj != null){
-		console.log("S38");
-		console.log(obj);
-	}
-	obj = JSON.parse(data);
-	console.log("S42");
-	console.log(obj)
-	loadBidArray(obj);
-	console.log("S45");
-	console.log(obj)
-	if(obj['BidText']){
-		setBidText(obj);
-	} else {
-		refreshItems(obj);
-	}	
-	bidLock = false;
-	start("Input Request: ");
-});
-
-function loadBidArray(obj) {
-	console.log("S57");
-	console.log(obj);
-	var j = false; 
-	for(var key in bids)
-	{
-		j=true;
-		break;
-	}
-	if (!j) {
-		console.log("in loop");
-		for (var key in obj) {
-			console.log("loop counts");
-			bids[key] = []; 
-		}
-	}
-}
+Client.prototype.loadBidArray = function(obj) {
+    var j = false;
+    for (var key in this.bids) {
+        j = true;
+        break;
+    }
+    if (!j) {
+        for (var ke in obj) {
+            this.bids[ke] = [];
+        }
+    }
+};
 
 //ITS HERE 
-function refreshItems(ob) {
-	console.log("C75");
-	var items = ob;
-	console.log(items);
-	for (var key in items) {
-		itemList[items[key].itemName] = items[key];
-	}
-	console.log("C80");
-	updateBids();
-	updateUI();
-}
-
-function updateBids() {
-	console.log("C85");
-	console.log(itemList);
-	console.log("C87");
-	console.log(bids);
-	for (var key in itemList) {
-
-		if(checkE(itemList[key].price, bids[key])) {
-			itemList[key].bidText = BidText[0];
-		} else if (checkG(itemList[key].price, bids[key])) {
-			itemList[key].bidText = BidText[4];
-		}
-	}
-}
-
-function updateUI() {
-	//call windows forms module? 
-	//console.log(itemList);
+Client.prototype.refreshItems = function(ob) {
+    var items = ob;
+    for (var key in items) {
+        this.itemList[items[key].itemName] = items[key];
+    }
+    this.updateBids();
+    this.updateUI();
 };
 
-function bid(itemName, amount) {
-	console.log("C104");
-	var bid = {}; 
-	bid.itemName = itemName; 
-	bid.price = amount; 
-	console.log("C111");
-	//console.log(JSON.stringify(bid));
-
-	client.write(JSON.stringify(bid), 'utf8', function(){
-		input1 = null; 
-		input2 = null;
-		bidLock = false; 
-		bids[itemName].push(bid.price);
-	});
-
-}
-
-function setBidText(ob) {
-	console.log("C118");
-	console.log(ob)
-	if(itemList[ob.BidText]){
-		itemList[ob.BidText].bidText = [ob.BidText];
-	}
-	console.log("C123");
-	console.log(ob.bidText);
-}
-
-var input1;
-var input2;
-
-function getBid() {
-	if(input1 && input2){
-		bid(input1, input2);
-	} else {
-		console.log("already bid!");
-	}
-}
-
-function save(answer) {
-	console.log("C139");
-	console.log(input1);
-	if(input1){
-		bidLock = true; 
-		input2 = answer;
-		getBid();
-	} else {
-		input1 = answer;
-		start("Bid Amount: ");
-	}
-}
-
-start = function (inputRequest) {
-	if(!bidLock) {
-		rl.question(inputRequest, function(answer) {
-			save(answer);
-		});
-	};
+Client.prototype.updateBids = function() {
+    log("updating bids for client " + this.name);
+    for (var key in this.itemList) {
+        if (this.checkE(this.itemList[key].price, this.bids[key])) {
+            this.itemList[key].bidText = BidText[0];
+        } else if (this.checkG(this.itemList[key].price, this.bids[key])) {
+            this.itemList[key].bidText = BidText[4];
+        }
+    }
 };
 
-checkG = function(price, bidsKey) {
-	var j = true; 
-	for (var key in bidsKey) {
-		if (bidsKey[key] > price) {
-			j = false;
-			break;
-		}
-	}
-	return j;
+Client.prototype.updateUI = function() {
+    log("sending ui updates to client " + this.name);
+};
+
+Client.prototype.bid = function(itemName, amount) {
+    var b = {};
+    b.itemName = itemName;
+    b.price = amount;
+    var _this = this;
+    log("issuing bid [ " + b + " ] for client [" + this.name + "]");
+    this.perform(JSON.stringify(b), function(bi) {
+        var bid = bi;
+        _this.input1 = null;
+        _this.input2 = null;
+        _this.bidLock = false;
+        _this.bids[bid.itemName].push(bid.price);
+    });
+};
+
+Client.prototype.setBidText = function(ob) {
+    log("bid text for client " + this.name + " set to " + ob);
+    if (this.itemList[ob.BidText]) {
+        this.itemList[ob.BidText].bidText = [ob.BidText];
+    }
+};
+
+
+Client.prototype.getBid = function() {
+    if (this.input1 && this.input2) {
+        this.bid(this.input1, this.input2);
+    } else {
+        console.log("already bid!");
+    }
+};
+
+Client.prototype.addToBidsCallback = function() {};
+
+Client.prototype.save = function(answer) {
+    function isJSON(str) {
+        return ((str.indexOf("{") != -1) && (str.indexOf("}") != -1));
+    }
+    answer = answer.toString();
+    if (isJSON(answer)) {
+        this.perform(answer);
+    } else {
+        if (this.input1) {
+            this.bidLock = true;
+            this.input2 = answer;
+            this.getBid();
+        } else {
+            this.input1 = answer;
+            this.socket.write("Bid Amount: ");
+        }
+    }
+};
+
+Client.prototype.checkG = function(price, bidsKey) {
+    var j = true;
+    for (var key in bidsKey) {
+        if (bidsKey[key] > price) {
+            j = false;
+            break;
+        }
+    }
+    return j;
+};
+
+Client.prototype.checkE = function(price, bidsKey) {
+    var j = false;
+    for (var key in bidsKey) {
+        if (bidsKey[key] === price) {
+            j = true;
+            break;
+        }
+    }
+    return j;
+};
+
+Client.prototype.addToBids = function(sock, inc, callback) {
+    callback(sock, inc);
+};
+
+
+Client.prototype.setConnect = function() {
+    this.socket.on('connect', function() {
+        var dgram = require('dgram');
+        var message = new Buffer("Some bytes");
+        var client = dgram.createSocket("udp4");
+        client.send(message, 0, message.length, 41234, "localhost", function(err, bytes) {
+            client.close();
+        });
+    });
+};
+
+function removeEndline(str) {
+    return str.replace(/(\r\n|\n|\r)/gm, "");
 }
 
-checkE = function(price, bidsKey) {
-	var j = false; 
-	for (var key in bidsKey) {
-		if (bidsKey[key] === price) {
-			j = true;
-			break;
-		}
-	}
-	return j; 
-}
+Client.prototype.perform = function(data, callback) {
+    function clean(data) {
+        for (var d in data) {
+            data[d] = removeEndline(data[d]);
+        }
+        return data;
+    }
+    this.incoming = clean(JSON.parse(data));
+    if (this.incoming['itemName'] && this.incoming['price']) {
+        this.addToBids(this.socket, this.incoming, addToBidsCallback());
+    }
+    callback(this.incoming);
+};
 
+Client.prototype.setData = function() {
+    var _this = this;
+    this.socket.on('data', function(data) {
+        log("client " + _this.name + " sent data " + removeEndline(data.toString()));
+        if (!this.bidLock) {
+            _this.save(data);
+        }
+    });
+};
+
+Client.prototype.setEnd = function() {
+    this.socket.on('end', function() {
+        var index = this.clients.indexOf(socket);
+        log("client " + this.clients[index].name + " terminated connection. removing.");
+        server.removeClientAtIndex(index);
+        server.broadcastItems();
+    });
+};
+
+module.exports = Client;
