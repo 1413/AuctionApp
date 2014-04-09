@@ -1,22 +1,21 @@
-[
-	{
-		"itemName":"Chair", 
-		"price": 55.34,
-		"date": "30-14-21 5:00PM"
-	}, 
-	{
-		"itemName":"Table", 
-		"price": 25.34,
-		"date": "30-14-21 5:00PM"
-	},
-	{
-		"itemName":"Drapes", 
-		"price": 15.34,
-		"date": "30-14-21 5:00PM"
-	},
-	{
-		"itemName":"Fan", 
-		"price": 155.34,
-		"date": "30-14-21 5:00PM"
-	}
-]
+[{
+  "itemName": "Chair",
+  "itemDescription": "This is a nice chair",
+  "price": 55.34,
+  "date": "30-14-22 11:00PM"
+}, {
+  "itemName": "Table",
+  "itemDescription": "This table sucks",
+  "price": 25.34,
+  "date": "30-14-21 5:00PM"
+}, {
+  "itemName": "Drapes",
+  "itemDescription": "These drapes smell weird",
+  "price": 15.34,
+  "date": "30-14-29 2:00PM"
+}, {
+  "itemName": "Fan",
+  "itemDescription": "the biggest kanye west fan in the world",
+  "price": 155.34,
+  "date": "30-14-21 1:00AM"
+}]
