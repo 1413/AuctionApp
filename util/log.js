@@ -1,11 +1,5 @@
 fs = require('fs');
-
+var l = fs.createWriteStream('./util/logfile.txt', { 'flags': 'a' });
 module.exports = function log(someText) {
-  someText = (new Date()).toISOString() + ": " + someText + "\n";
-  fs.appendFile('./util/logfile.txt', someText, function (err) {
-    if (err) {
-      console.log("Shutting down ");
-      server = null;
-    }
-  });
+    l.write(someText); 
 };

@@ -1,4 +1,4 @@
-var Server = require("../server.js");
+var Server = require("../app.js");
 var net = require('net');
 var port;
 var sockets = [];
@@ -7,7 +7,7 @@ var sockets = [];
 //   var sock = net.connect({
 //     port: p
 //   }, function () {
-//     console.log('client connected');
+//     console.log('oap connected');
 //   });
 //   sockets.push(sock);
 // }
@@ -22,7 +22,7 @@ describe('server', function () {
   }
 
   function index(socket) {
-    return server.clients.indexOf(setName(socket));
+    return server.oaps.indexOf(setName(socket));
   }
 
   function stopMe() {
@@ -67,17 +67,17 @@ describe('server', function () {
       };
       expect(server.itemList).toEqual(iL);
     });
-    xit("should have added a client", function () {
-      expect(server.clients.length).toEqual(1);
+    xit("should have added a oap", function () {
+      expect(server.oaps.length).toEqual(1);
     });
   });
 
   describe('addToBids', function () {
-    // var client1, client2, clientSocket1, clientSocket2;
-    // clientSocket1 = sockets[0];
-    // clientSocket2 = sockets[1];
-    // client1 = server.clients[index(clientSocket1)];
-    // client2 = server.clients[index(clientSocket2)];
+    // var oap1, oap2, oapSocket1, oapSocket2;
+    // oapSocket1 = sockets[0];
+    // oapSocket2 = sockets[1];
+    // oap1 = server.oaps[index(oapSocket1)];
+    // oap2 = server.oaps[index(oapSocket2)];
     // bid1 = {
     //   itemName: "Table",
     //   price: 200
@@ -86,23 +86,23 @@ describe('server', function () {
     //   itemName: "Table",
     //   price: 198
     // };
-    // clientSocket1.write(JSON.stringify(bid1));
-    // clientSocket2.write(JSON.stringify(bid));
+    // oapSocket1.write(JSON.stringify(bid1));
+    // oapSocket2.write(JSON.stringify(bid));
     xit("should have updated its list items", function () {
       expect(server.itemList['Table']['price']).toEqual(200);
     });
 
     xit("should have updated its bids correctly", function () {
-      expect(server.itemList['Table'].bids['bidder'].toEqual(setName(clientSocket1)));
+      expect(server.itemList['Table'].bids['bidder'].toEqual(setName(oapSocket1)));
     });
   });
 
-  describe('it should remove disconnected clients', function () {
-    // var clientSocket = sockets[0];
-    // clientSocket.close();
+  describe('it should remove disconnected oaps', function () {
+    // var oapSocket = sockets[0];
+    // oapSocket.close();
 
     xit("should have updated its array", function () {
-      expect(server.clients.length).toEqual(0);
+      expect(server.oaps.length).toEqual(0);
     });
   });
 });

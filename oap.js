@@ -1,13 +1,11 @@
 net = require('net');
-var readline = require('readline');
 var fs = require('fs');
 var util = require('util');
-var server = require('./server.js');
 var log = require('./util/log.js');
 var net = require('net');
 
 
-Client = function (sock, server) {
+Oap = function (sock, server) {
   function setName() {
     return (String)(sock.remoteAddress + ":" + sock.remotePort);
   }
@@ -18,8 +16,7 @@ Client = function (sock, server) {
   this.server = server;
 };
 
-
-Client.prototype.setConnect = function (itemL) {
+Oap.prototype.setConnect = function (itemL) {
   this.itemList = itemL;
   var _this = this;
   for (var key in _this.itemList) {
@@ -46,30 +43,30 @@ function clean(data) {
   return data;
 }
 
-Client.prototype.setData = function () {
+Oap.prototype.setData = function () {
   var _this = this;
   try {
     this.socket.on('data', function (data) {
       var incoming = {};
       try {
-        log("client " + this.name + " sent data " + removeEndline(data.toString()));
+        log("oap " + this.name + " sent data " + removeEndline(data.toString()));
         incoming = clean(JSON.parse(data));
       } catch (err) {
         log(err);
       }
       if (incoming['itemName'] && incoming['price']) {
-        var clientItemBids = _this.itemList[incoming['itemName']].bids;
-        if (!clientItemBids) {
-          clientItemBids = [];
+        var oapItemBids = _this.itemList[incoming['itemName']].bids;
+        if (!oapItemBids) {
+          oapItemBids = [];
         }
-        if (clientItemBids.length > 0) {
-          if (clientItemBids[clientItemBids.length - 1] < parseFloat(incoming['price'])) {
-            clientItemBids.push(incoming['price']);
+        if (oapItemBids.length > 0) {
+          if (oapItemBids[oapItemBids.length - 1] < parseFloat(incoming['price'])) {
+            oapItemBids.push(incoming['price']);
           }
         } else {
-          clientItemBids.push(incoming['price']);
+          oapItemBids.push(incoming['price']);
         }
-        _this.itemList[incoming['itemName']].bids = clientItemBids;
+        _this.itemList[incoming['itemName']].bids = oapItemBids;
         _this.server.addToBids(_this.socket, incoming);
       }
     });
@@ -78,13 +75,13 @@ Client.prototype.setData = function () {
   }
 };
 
-Client.prototype.setEnd = function () {
+Oap.prototype.setEnd = function () {
   this.socket.on('end', function () {
-    var index = this.clients.indexOf(socket);
-    log("client " + this.clients[index].name + " terminated connection. removing.");
-    server.removeClientAtIndex(index);
+    var index = this.oaps.indexOf(socket);
+    log("oap " + this.oaps[index].name + " terminated connection. removing.");
+    server.removeOapAtIndex(index);
   });
 };
 
 
-module.exports = Client;
+module.exports = Oap;
