@@ -1,0 +1,11 @@
+
+T1: {"itemName":"Chair", "price":200} <you are high bidder><T2: updated>
+T2: {"itemName":"Chair", "price":200} <no bid text> 
+T2: {"itemName":"Chair", "price":205} <T2: you are high bidder><T1: you were outbid>
+T1: {"itemName":"Drapes", "price":10} <no change> 
+T1: {"itemName":"coolia", "price":200} <no change> 
+T1: {"itemName":"Drapes", "price":"200"} <no change> 
+T1: {"itemName":"Drapes", "price":100} <you are high bidder><T2: updated>
+T1: {"itemName":"Drapes", "price":200} <T1 you are high bidder><T2: updated>
+T2: {"itemName":"Fan", "price":200} <T2 you are high bidder><T1: updated>
+

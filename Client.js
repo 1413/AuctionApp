@@ -1,8 +1,13 @@
+net = require('net');
+var readline = require('readline');
+var fs = require('fs');
+var util = require('util');
 var server = require('./server.js');
 var log = require('./util/log.js');
+var net = require('net');
 
 
-Client = function (sock) {
+Client = function (sock, server) {
   function setName() {
     return (String)(sock.remoteAddress + ":" + sock.remotePort);
   }
@@ -10,22 +15,24 @@ Client = function (sock) {
   this.socket = sock;
   this.itemList = {};
   this.name = setName();
+  this.server = server;
 };
 
 
-Client.prototype.setConnect = function (itemList) {
-  this.itemList = itemList;
+Client.prototype.setConnect = function (itemL) {
+  this.itemList = itemL;
   var _this = this;
   for (var key in _this.itemList) {
-    _this.itemList[key]['bids'] = [];
+    _this.itemList[key]['bidText'] = "Enter a bid higher than the listed price!";
   }
   var jsonMessage = {};
-  _this.itemList['bidText'] = "Enter a bid higher than the listed price!";
   jsonMessage['itemList'] = _this.itemList;
+  for (var k in _this.itemList) {
+    _this.itemList[k]['bids'] = [];
+  }
   var message = JSON.stringify(jsonMessage);
-  this.socket.on('connect', function () {
-    _this.socket.write(message);
-  });
+  console.log("setting connect with message: " + message);
+  this.socket.write(message);
 };
 
 function removeEndline(str) {
@@ -41,25 +48,34 @@ function clean(data) {
 
 Client.prototype.setData = function () {
   var _this = this;
-  this.socket.on('data', function (data) {
-    log("client " + this.name + " sent data " + removeEndline(data.toString()));
-    var incoming = clean(JSON.parse(data));
-    if (incoming['itemName'] && incoming['price']) {
-      var clientItemBids = _this.itemList[incoming['itemName']].bids;
-      if (!clientItemBids) {
-        clientItemBids = [];
+  try {
+    this.socket.on('data', function (data) {
+      var incoming = {};
+      try {
+        log("client " + this.name + " sent data " + removeEndline(data.toString()));
+        incoming = clean(JSON.parse(data));
+      } catch (err) {
+        log(err);
       }
-      if (clientItemBids.length > 0) {
-        if (clientItemBids[clientItemBids.length - 1] < parseFloat(incoming[price])) {
+      if (incoming['itemName'] && incoming['price']) {
+        var clientItemBids = _this.itemList[incoming['itemName']].bids;
+        if (!clientItemBids) {
+          clientItemBids = [];
+        }
+        if (clientItemBids.length > 0) {
+          if (clientItemBids[clientItemBids.length - 1] < parseFloat(incoming['price'])) {
+            clientItemBids.push(incoming['price']);
+          }
+        } else {
           clientItemBids.push(incoming['price']);
         }
-      } else {
-        clientItemBids.push(incoming['price']);
+        _this.itemList[incoming['itemName']].bids = clientItemBids;
+        _this.server.addToBids(_this.socket, incoming);
       }
-      _this.itemList[incoming['itemName']].bids = clientItemBids;
-      _this.addToBids(this.socket, incoming);
-    }
-  });
+    });
+  } catch (err) {
+    log(err);
+  }
 };
 
 Client.prototype.setEnd = function () {

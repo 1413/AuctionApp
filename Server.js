@@ -27,7 +27,7 @@ Server = function (options) {
   var items = [];
   var count = false;
 
-  function load() {
+  function load(callback) {
     fs.readFile('./items.json', function read(err, data) {
       if (err) {
         throw err;
@@ -38,17 +38,15 @@ Server = function (options) {
         console.log("in the for loop");
         items[i].bids = [];
         _this.itemList[items[i]['itemName']] = items[i];
-        if (i === items.length - 1) count = true;
+        if (i === items.length - 1) callback();
       }
-      _this.createUdpServers(42500, function (err) {
-        if (err) throw err;
-        _this.createTimers(_this.itemList);
-        _this.launch();
-      });
-
     });
   }
-  load();
+  load(function () {
+    _this.createUdpServers(42500, function () {
+      _this.launch();
+    });
+  });
 };
 
 Server.prototype.createUdpServers = function (index, callback) {
@@ -67,16 +65,17 @@ Server.prototype.createUdpServers = function (index, callback) {
         lock = false;
       } catch (err) {
         console.log(err);
+        if (i > 100) {
+          throw err;
+        }
         i++;
       }
     }
-    if (count === l) {
-      callback();
-    }
+    callback();
   }
 };
 
-Server.protoype.launchTimeLoop = function (nextDate) {
+Server.prototype.launchTimeLoop = function (nextDate) {
   var interval = nextDate - new Date().getTime();
   while (interval < 0) {
     this.soldItems[itemTimeOuts.unshift()] = "?";
@@ -155,15 +154,17 @@ Server.prototype.timerExpired = function () {
 Server.prototype.saveListState = function () {
   log("Saving new bid state");
   var _this = this;
-  fs.writeFile('./items-output.json', function read(err) {
-    if (err) throw err;
-    arr = [];
-    for (var k in _this.itemList) {
-      arr.push(_this.itemList[k].join().toString());
-    }
-    var str = "[\n" + arr.join().toString() + "\n]";
-    console.write(str);
+  arr = [];
+  for (var k in _this.itemList) {
+    var s = JSON.stringify(_this.itemList[k]);
+    arr.push(s + "\n");
+  }
+  var str = "[\n" + arr.join() + "\n]";
+  str = str.replace(',', ',\n');
+  fs.writeFile('./items-output.json', str, function (err) {
+    if (err) log(err);
   });
+  console.log("writing");
 };
 
 Server.prototype.broadcast = function (message, sender) {
@@ -175,29 +176,47 @@ Server.prototype.broadcast = function (message, sender) {
       client.socket.write(message);
     });
   } else {
+    var j = 0;
     this.clients.forEach(function (client) {
+      j++;
       if (client === sender) return;
       var clientItemBids = client.itemList[message['itemName']]['bids'];
       var messageString;
-
+      var jsn = message;
       if (!clientItemBids) {
-        messageString = JSON.stringify(message);
+        if (jsn['bidText']) {
+          delete jsn['bidText'];
+        }
+        console.log(j.toString() + "1");
+        messageString = JSON.stringify(jsn);
+        console.log(messageString);
       } else if (clientItemBids.length === 0) {
-        messageString = JSON.stringify(message);
+        if (jsn['bidText']) {
+          delete jsn['bidText'];
+        }
+        console.log(j.toString() + "2");
+        messageString = JSON.stringify(jsn);
+        console.log(messageString);
       } else {
         var bidValue = parseFloat(message['price']);
         var clientMessage = message;
-        if (clientItemBids[clientItemBids.length - 1] < bidValue) {
+        console.log("HERE ARE THE CLBS");
+        console.log(clientItemBids);
+        if (clientItemBids[clientItemBids.length - 1]['bidText']) {
           clientMessage['bidText'] = "You were outbid!";
         } else {
           clientMessage['bidText'] = "You are currently the highest bidder!";
           _this.saveListState();
         }
+        client.itemList[message['itemName']]['bids'] = clientItemBids;
+        console.log(j.toString() + "3");
         messageString = JSON.stringify(clientMessage);
+        console.log(messageString);
       }
       client.socket.write(messageString);
     });
   }
+
 };
 
 Server.prototype.removeClientAtIndex = function (index) {
@@ -232,8 +251,7 @@ Server.prototype.addToBids = function (socket, incoming) {
   var item = this.itemList[incoming.itemName];
   response.BidText = {};
   response['itemName'] = incoming.itemName;
-
-  if (incoming.price < item.price) {
+  if (incoming.price <= item.price) {
     response['bidText'] = "Sorry! You were outbid, Enter a higher number and try again!";
     var message = JSON.stringify(response);
     socket.write(message);
@@ -241,11 +259,12 @@ Server.prototype.addToBids = function (socket, incoming) {
     if (!item.bids) item.bids = [];
     item.price = incoming.price;
     item.bids.push(incoming);
-
     this.itemList[incoming.itemName] = item;
     this.broadcast(incoming);
   }
 };
+
+
 
 Server.prototype.admin = function () {
   var commands = " [-L | -S | -T | -H | -P | -X][-C[-L | name]]";

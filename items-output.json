@@ -1,0 +1,8 @@
+[
+{"itemName":"Chair",
+"itemDescription":"This is a nice chair","price":"201","date":"30-14-22 11:00PM","bids":["200",{"itemName":"Chair","price":"200","bidText":"You were outbid!"},{"itemName":"Chair","price":"201","bidText":"You are currently the highest bidder!"}],"image":42500,"bidText":"Enter a bid higher than the listed price!"}
+,{"itemName":"Table","itemDescription":"This table sucks","price":25.34,"date":"30-14-21 5:00PM","bids":[],"image":42500,"bidText":"Enter a bid higher than the listed price!"}
+,{"itemName":"Drapes","itemDescription":"These drapes smell weird","price":15.34,"date":"30-14-29 2:00PM","bids":[],"image":42500,"bidText":"Enter a bid higher than the listed price!"}
+,{"itemName":"Fan","itemDescription":"the biggest kanye west fan in the world","price":155.34,"date":"30-14-21 1:00AM","bids":[],"image":42500,"bidText":"Enter a bid higher than the listed price!"}
+
+]
